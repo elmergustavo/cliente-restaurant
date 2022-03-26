@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from './cliente';
+//import { CLIENTES } from './clientes.json';
+import { ClienteService } from './cliente.service';
 
 @Component({
   selector: 'app-clientes',
@@ -7,26 +9,15 @@ import { Cliente } from './cliente';
 })
 export class ClientesComponent implements OnInit {
 
-  clientes: Cliente[] = [
-    { id: 1, nombre: 'Gustavo', apellido: 'Pu', email: 'gusta@correo.com', createAt: '2022-10-05' },
-    { id: 1, nombre: 'Gustavo', apellido: 'Pu', email: 'gusta@correo.com', createAt: '2022-10-05' },
-    { id: 1, nombre: 'Gustavo', apellido: 'Pu', email: 'gusta@correo.com', createAt: '2022-10-05' },
-    { id: 1, nombre: 'Gustavo', apellido: 'Pu', email: 'gusta@correo.com', createAt: '2022-10-05' },
-    { id: 1, nombre: 'Gustavo', apellido: 'Pu', email: 'gusta@correo.com', createAt: '2022-10-05' },
-    { id: 1, nombre: 'Gustavo', apellido: 'Pu', email: 'gusta@correo.com', createAt: '2022-10-05' },
-    { id: 1, nombre: 'Gustavo', apellido: 'Pu', email: 'gusta@correo.com', createAt: '2022-10-05' },
-    { id: 1, nombre: 'Gustavo', apellido: 'Pu', email: 'gusta@correo.com', createAt: '2022-10-05' },
-    { id: 1, nombre: 'Gustavo', apellido: 'Pu', email: 'gusta@correo.com', createAt: '2022-10-05' },
-    { id: 1, nombre: 'Gustavo', apellido: 'Pu', email: 'gusta@correo.com', createAt: '2022-10-05' },
-    { id: 1, nombre: 'Gustavo', apellido: 'Pu', email: 'gusta@correo.com', createAt: '2022-10-05' },
-    { id: 1, nombre: 'Gustavo', apellido: 'Pu', email: 'gusta@correo.com', createAt: '2022-10-05' },
-    { id: 1, nombre: 'Gustavo', apellido: 'Pu', email: 'gusta@correo.com', createAt: '2022-10-05' },
-    { id: 1, nombre: 'Gustavo', apellido: 'Pu', email: 'gusta@correo.com', createAt: '2022-10-05' },
-  ];
-  constructor() {
+  
+  clientes: Cliente[] = [];
+  
+  constructor(private clienteService: ClienteService) {
+    
    }
 
   ngOnInit(): void {
+    this.clientes = this.clienteService.getClientes();
   }
 
 }
