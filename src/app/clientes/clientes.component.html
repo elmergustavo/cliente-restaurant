@@ -3,7 +3,15 @@
   <div class="card-body text-primary">
     <h5 class="card-title">Listado de clientes</h5>
 
-    <table class="table table-bordered table-striped">
+    <div class="my-2 text-left">
+      <button [routerLink]="['/clientes/form']" class="btn btn-rounded btn-primary" type="button">Crear CLiente</button>
+    </div>
+
+    <div *ngIf="clientes?.length == 0 " class="alert alert-info">
+      No hay registro en la base de datos
+    </div>
+
+    <table class="table table-bordered table-striped" *ngIf="clientes?.length">
       <thead>
         <tr>
           <th>id</th>
@@ -11,6 +19,8 @@
           <th>apellido</th>
           <th>correo electronico</th>
           <th>fecha</th>
+          <th>editar</th>
+          <th>Eliminar</th>
         </tr>
       </thead>
 
@@ -21,8 +31,16 @@
               <td>{{cliente.apellido}}</td>
               <td>{{cliente.email}}</td>
               <td>{{cliente.createAt}}</td>
+              <td>
+                <button type="button" name="editar" [routerLink]="['/clientes/form', cliente.id]" class="btn btn-primary">Editar</button>
+
+              </td>
+              <td>
+                <button type="button" name="eliminar" (click)="delete(cliente)" class="btn btn-danger">Eliminar</button>
+
+              </td>
           </tr>
-      </tbody>
+      </tbody> 
     </table>
   </div>
 </div>
