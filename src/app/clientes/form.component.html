@@ -1,7 +1,7 @@
 <div class="card bg-dark text-white">
   <div class="card-header">{{ titulo }}</div>
   <div class="card-body">
-    <form>
+    <form #clienteForm="ngForm">
       <div class="form-group row py-2">
         <label for="nombre" class="col-form-label col-sm-2">Nombre</label>
         <div class="col-sm-6">
@@ -10,9 +10,21 @@
             name=""
             id=""
             class="form-control"
-            [(ngModel)] = "cliente.nombre"
+            [(ngModel)]="cliente.nombre"
             name="nombre"
+            required
+            minlength="4"
+            #nombre="ngModel"
           />
+          <div
+            class="alert alert-danger"
+            *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)"
+          >
+            <div *ngIf="nombre.errors">Nombre es requerido</div>
+            <div *ngIf="nombre.errors">
+              Nombre debe tener al menos 4 caracteres
+            </div>
+          </div>
         </div>
       </div>
 
@@ -24,9 +36,17 @@
             name=""
             id=""
             class="form-control"
-            [(ngModel)] = "cliente.apellido"
+            [(ngModel)]="cliente.apellido"
             name="apellido"
+            required
+            #apellido="ngModel"
           />
+          <div
+            class="alert alert-danger"
+            *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)"
+          >
+            <div *ngIf="apellido.errors">Apellido es requerido</div>
+          </div>
         </div>
       </div>
 
@@ -38,19 +58,39 @@
             name=""
             id=""
             class="form-control"
-            [(ngModel)] = "cliente.email"
+            [(ngModel)]="cliente.email"
             name="email"
+            required
+            email
+            #email="ngModel"
+            ngModel email="true"
           />
+          <div
+            class="alert alert-danger"
+            *ngIf="email.invalid && (email.dirty || email.touched)"
+          >
+            <div *ngIf="email.errors">Email es requerido</div>
+            <div *ngIf="email.errors">Email debe tener un formato valido</div>
+          </div>
         </div>
       </div>
 
       <div class="form-group row py-2">
         <div class="col-sm-6">
-            <button class="btn btn-primary" role="button" (click)='create()' *ngIf="!cliente.id else elseBlock">Crear</button>
-            <ng-template #elseBlock>
-                <button class="btn btn-primary" role="button" (click)="update()">Editar</button>
-            </ng-template>
-            
+          <button
+            class="btn btn-primary"
+            role="button"
+            (click)="create()"
+            *ngIf="!cliente.id; else elseBlock"
+            [disabled] = "!clienteForm.form.valid"
+          >
+            Crear
+          </button>
+          <ng-template #elseBlock>
+            <button class="btn btn-primary" role="button" (click)="update()" [disabled] = "!clienteForm.form.valid">
+              Editar
+            </button>
+          </ng-template>
         </div>
       </div>
     </form>
