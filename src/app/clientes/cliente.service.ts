@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { formatDate, DatePipe } from '@angular/common';
 import { CLIENTES } from './clientes.json';
 import { Cliente } from './cliente';
 import { Observable } from 'rxjs';
@@ -21,7 +22,18 @@ export class ClienteService {
     //return of(CLIENTES);
     //return this.http.get<Cliente[]>(this.urlEndPoint);
     return this.http.get(this.urlEndPoint).pipe(
-      map( (response) => response as Cliente[])
+      map( (response) => {
+        let clientes = response as Cliente[];
+        return clientes.map(cliente => {
+          cliente.nombre = cliente.nombre.toUpperCase();
+          cliente.apellido = cliente.apellido.toUpperCase();
+          let datePipe = new DatePipe('en-US');
+
+          //cliente.createAt = datePipe.transform(cliente.createAt, 'dd/MM/yyyy');
+          cliente.createAt = formatDate(cliente.createAt, 'EEEE dd, MMMM yyyy', 'es')
+          return cliente;
+        })
+      })
     )
   }
 
@@ -64,6 +76,6 @@ export class ClienteService {
         Swal.fire('Error al Eliminar al cliente', e.error.mensaje, 'error');
         return throwError(e);
       })
-    )    
+    )
   }
 }
