@@ -1,23 +1,45 @@
 <div class="card bg-dark text-white">
   <div class="card-header">{{titulo}}</div>
   <div class="card-body">
-    <div class="input-group">
-      <input
-      (change)="seleccionarFoto($event)"
-        type="file"
-        class="form-control"
-        id="inputGroupFile04"
-        aria-describedby="inputGroupFileAddon04"
-        aria-label="Upload"
-      />
-      <button
-      (click)="subirFoto()"
-        class="btn btn-outline-secondary"
-        type="button"
-        id="inputGroupFileAddon04"
-      >
-        Subir Foto
-      </button>
+
+    <div class="container">
+      <div class="row">
+      <div class="col-sm">
+        <ul *ngIf="cliente" class="list-group text-dark mb-3">
+          <li class="list-group-item">{{cliente.nombre}}</li>
+          <li class="list-group-item">{{cliente.apellido}}</li>
+          <li class="list-group-item">{{cliente.email}}</li>
+          <li class="list-group-item">{{cliente.createAt | date:"fullDate"}}</li>
+        </ul>
+
+        <div class="input-group">
+          <input
+          (change)="seleccionarFoto($event)"
+            type="file"
+            class="form-control"
+            id="inputGroupFile04"
+            aria-describedby="inputGroupFileAddon04"
+            aria-label="Upload"
+          />
+          <button
+          (click)="subirFoto()"
+            class="btn btn-outline-secondary"
+            type="button"
+            id="inputGroupFileAddon04"
+          >
+            Seleccionar Foto
+          </button>
+        </div>
+
+
+      </div>
+      <div class="col-sm">
+        <img class="img-thumbnail rounded"  *ngIf="cliente?.foto" src="http://localhost:8080/api/uploads/img/{{cliente.foto}}" alt="{{cliente.foto}}">
+      </div>
     </div>
+    </div>
+
+
+
   </div>
 </div>

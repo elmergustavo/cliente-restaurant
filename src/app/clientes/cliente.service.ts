@@ -4,7 +4,7 @@ import { formatDate, DatePipe } from '@angular/common';
 import { Cliente } from './cliente';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { map, catchError, throwError } from 'rxjs';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';

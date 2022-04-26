@@ -34,15 +34,25 @@ export class DatelleComponent implements OnInit {
   seleccionarFoto(event: any) {
     this.fotoSeleccionada = event.target.files[0];
     console.log(this.fotoSeleccionada);
+
+    if(this.fotoSeleccionada.type.indexOf('image') < 0){
+      Swal.fire('Error: Seleccionar imganen: ', 'El archivo debe de ser tipo imagen', 'error')
+      return;
+    }
   }
 
   subirFoto(){
-    this.clienteService.subirFoto(this.fotoSeleccionada, this.cliente.id).subscribe(
-      cliente => {
-        this.cliente = cliente;
-        Swal.fire("La foto se ha subido correctamente",`La foto se ha subido con exito: ${this.cliente.foto}`, "success" )
-      }
-    )
+    if (!this.fotoSeleccionada){
+      Swal.fire('Error: Updload', 'debe seleccionar una foto', 'error')
+    } else {
+      this.clienteService.subirFoto(this.fotoSeleccionada, this.cliente.id).subscribe(
+        cliente => {
+          this.cliente = cliente;
+          Swal.fire("La foto se ha subido correctamente",`La foto se ha subido con exito: ${this.cliente.foto}`, "success" )
+        }
+      )
+    }
+
   }
 
 }
