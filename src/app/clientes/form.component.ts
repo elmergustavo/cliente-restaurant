@@ -12,8 +12,8 @@ import Swal from 'sweetalert2';
 })
 export class FormComponent implements OnInit {
 
-  
-   
+
+
   //clientes: Cliente;
   //private cliente: Cliente = new Cliente();
   public titulo:string = "crear cliente";
@@ -22,11 +22,12 @@ export class FormComponent implements OnInit {
     id: 0,
     nombre: '',
     apellido:'',
+    createAt: '',
     email: ''
-    
+
   }
-  
-  constructor(private clienteService: ClienteService, 
+
+  constructor(private clienteService: ClienteService,
     private router: Router, private activateRoute: ActivatedRoute) { }
 
   ngOnInit(): void {

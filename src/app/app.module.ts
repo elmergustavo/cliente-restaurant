@@ -14,7 +14,10 @@ import { FormsModule } from '@angular/forms';
 import localES from '@angular/common/locales/es'
 import { formatDate, DatePipe } from '@angular/common';
 import { registerLocaleData } from '@angular/common';
-
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import { MatInputModule } from '@angular/material/input'
+import {MatDatepickerModule } from '@angular/material/datepicker'
+import {MatMomentDateModule } from '@angular/material-moment-adapter'
 registerLocaleData(localES, 'es')
 const routes: Routes = [
   {path: '', redirectTo: '/clientes', pathMatch: 'full'},
@@ -37,7 +40,12 @@ const routes: Routes = [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatMomentDateModule
+
   ],
   providers: [ClienteService],
   bootstrap: [AppComponent]
