@@ -17,7 +17,8 @@ import { registerLocaleData } from '@angular/common';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import { MatInputModule } from '@angular/material/input'
 import {MatDatepickerModule } from '@angular/material/datepicker'
-import {MatMomentDateModule } from '@angular/material-moment-adapter'
+import {MatMomentDateModule } from '@angular/material-moment-adapter';
+import { DatelleComponent } from './clientes/datelle/datelle.component'
 registerLocaleData(localES, 'es')
 const routes: Routes = [
   {path: '', redirectTo: '/clientes', pathMatch: 'full'},
@@ -25,6 +26,7 @@ const routes: Routes = [
   {path: 'clientes', component: ClientesComponent},
   {path: 'clientes/form', component: FormComponent},
   {path: 'clientes/form/:id', component: FormComponent},
+  {path: 'clientes/ver/:id', component: DatelleComponent},
 ]
 
 @NgModule({
@@ -35,6 +37,7 @@ const routes: Routes = [
     DirectivaComponent,
     ClientesComponent,
     FormComponent,
+    DatelleComponent,
   ],
   imports: [
     BrowserModule,

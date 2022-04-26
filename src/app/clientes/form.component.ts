@@ -23,8 +23,8 @@ export class FormComponent implements OnInit {
     nombre: '',
     apellido:'',
     createAt: '',
-    email: ''
-
+    email: '',
+    foto: ''
   }
 
   constructor(private clienteService: ClienteService,

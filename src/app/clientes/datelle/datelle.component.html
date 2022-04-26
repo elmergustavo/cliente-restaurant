@@ -1,0 +1,23 @@
+<div class="card bg-dark text-white">
+  <div class="card-header">{{titulo}}</div>
+  <div class="card-body">
+    <div class="input-group">
+      <input
+      (change)="seleccionarFoto($event)"
+        type="file"
+        class="form-control"
+        id="inputGroupFile04"
+        aria-describedby="inputGroupFileAddon04"
+        aria-label="Upload"
+      />
+      <button
+      (click)="subirFoto()"
+        class="btn btn-outline-secondary"
+        type="button"
+        id="inputGroupFileAddon04"
+      >
+        Subir Foto
+      </button>
+    </div>
+  </div>
+</div>
